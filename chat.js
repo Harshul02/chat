@@ -71,7 +71,7 @@ window.getDocument = async function getDocument() {
     
     console.log("akarshka"+window.localStorage["another"].toUpperCase());
     let paraelement;
-    const q = await query(collection(db, window.localStorage["name"].toUpperCase()),where("name","==", window.localStorage["another"].toUpperCase()),orderBy('ts', 'asc'));
+    const q = await query(collection(db, window.localStorage["name"].toUpperCase()),where("name","==", window.localStorage["another"].toUpperCase()));
     const unsub = onSnapshot(q, (snapshot) => {
         // snapshot.doc.map((d)=>console.log(d.name))
         //   snapshot.docChanges().forEach(async change => {
