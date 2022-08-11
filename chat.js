@@ -27,7 +27,7 @@ window.adder = async function adder() {
         collection(db, window.localStorage["name"].toUpperCase()), {
         name:  window.localStorage["another"].toUpperCase(),
         message: messageToSend,
-        ts: new Date().getTime(),
+        ts: new Date().getTime().toString(),
         from:window.localStorage["name"].toUpperCase()
 
     }
@@ -38,7 +38,7 @@ window.adder = async function adder() {
         collection(db, window.localStorage["another"].toUpperCase()), {
         name: window.localStorage["name"].toUpperCase(),
         message: messageToSend,
-        ts: new Date().getTime(),
+        ts: new Date().getTime().toString(),
         from:window.localStorage["name"].toUpperCase()
 
     }
@@ -71,7 +71,7 @@ window.getDocument = async function getDocument() {
     
     console.log("akarshka"+window.localStorage["another"].toUpperCase());
     let paraelement;
-    const q = await query(collection(db, window.localStorage["name"].toUpperCase()),where("name","==", window.localStorage["another"].toUpperCase()));
+    const q = await query(collection(db, window.localStorage["name"].toUpperCase()),where("name","==",window.localStorage["another"].toUpperCase()),orderBy('ts', 'asc'));
     const unsub = onSnapshot(q, (snapshot) => {
         // snapshot.doc.map((d)=>console.log(d.name))
         //   snapshot.docChanges().forEach(async change => {
