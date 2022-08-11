@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Login karna</title></head>
+    <body>
+        <input style="display: block;" id="name" type="text" placeholder="name">
+        <input style="display: block;" id="password" type="text"
+            placeholder="another chat">
+        <button id="buttons" onclick="openpage()">submit</button>
+        <script>
+       function openpage() {
+       window.location.href = 'chat.html';
+       const textw=document.getElementById('name').value;
+       const another=document.getElementById('password').value;
+       window.localStorage["name"]=textw;
+       window.localStorage["another"]=another;
+     
+       
+} 
+        </script>
+    </body>
+</html>

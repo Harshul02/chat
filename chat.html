@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <Title>Personal Chat</Title>
+        <script type="module" src="chat.js"></script>
+        <style>
+            .bottom_text_box{
+            
+       height:40px;
+       width: 100%; 
+       color: rgb(8, 6, 43);
+       display: flex;
+       position: fixed;
+       bottom: 0;
+       justify-content: center;
+       align-items: center;
+       font-size:25px;
+       font-weight: bold;
+       padding-bottom: 30px;
+       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+       z-index:150;
+      
+            }
+            .header_style{
+                background-color: rgb(23, 75, 75);
+        height: 50px;
+        width: 100%; 
+        color: rgb(8, 6, 43);
+        display: flex;
+        position: fixed;
+        top: 0;
+        justify-content: center;
+        align-items: center;
+        font-size:25px;
+        font-weight: bold;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        z-index:150;
+            }
+            .input_box{
+
+                border-style:solid;
+                border-width: 1.5px;
+                height: 32.5px;
+                min-width :50px ;
+                width: 40%;
+                border-color: green;
+                background-color:transparent;
+                color: rgb(255, 255, 255);
+                padding-left :10px;
+                z-index: 150;
+            }
+            .send_button{
+                margin-right:30%;
+                cursor: pointer;
+                border-style:solid;
+                border-width: 1px;
+                height:39.5px;
+                min-width :50px ;
+                background-color: rgb(49, 173, 102);
+                border-color: green;
+                z-index: 150;
+                transition: border-color 0.5s;
+            }
+            .input_box:focus{
+                border-color: red ;
+                border-radius: 0px;
+                outline: 10px;
+                border:1.45px solid green;
+               
+            }
+            .send_button:active{
+                background-color: green;
+            }
+        </style>
+    </head>
+    <body style="margin: 0;background:
+        url('https://www.wallpapertip.com/wmimgs/12-123125_dark-blue-hd-wallpapers-data-src-dark-blue.jpg');padding-top: 80px;padding-bottom: 100px;background-size: cover;">
+        <div class="header_style" id="Head_name">
+            
+
+        </div>
+        <div class="bottom_text_box">
+            <input type="text" class="input_box" id="message_box">
+            <button class="send_button" onclick="adder()">
+                Send
+            </button>
+        </div>
+    </body>
+</html>
