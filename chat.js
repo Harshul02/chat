@@ -19,31 +19,23 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 
 window.adder = async function adder() {
-    console.log("bello");
+    
     const messageToSend = document.getElementById('message_box').value;
     document.getElementById('message_box').value = "";
     console.log("poersa");
+    console.log()
     await addDoc(
-        collection(db, window.localStorage["name"].toUpperCase()), {
-        name:  window.localStorage["another"].toUpperCase(),
+        collection(db,"Personal"), {
+        sender:  window.localStorage["name"].toUpperCase(),
         message: messageToSend,
         ts: new Date().getTime().toString(),
-        from:window.localStorage["name"].toUpperCase()
+        receiver:window.localStorage["another"].toUpperCase(),
+        common:window.localStorage["common"]
 
     }
    
     );
-    console.log("poersdfsdfsa");
-    await addDoc(
-        collection(db, window.localStorage["another"].toUpperCase()), {
-        name: window.localStorage["name"].toUpperCase(),
-        message: messageToSend,
-        ts: new Date().getTime().toString(),
-        from:window.localStorage["name"].toUpperCase()
-
-    }
-    );
-    console.log("poersdasdasdasdasdsfsdfsa");
+   
    
 
 }
@@ -57,7 +49,7 @@ window.adder = async function adder() {
 //   .then(()=>alert('called')).catch((e)=>{
 //     alert("not success");
 //   });
-
+1
 let value;
 
 window.getDocument = async function getDocument() {
@@ -67,11 +59,10 @@ window.getDocument = async function getDocument() {
     // // doc.data() is never undefined for query doc snapshots
     // value=doc.data();
     //  });
-    console.log(window.localStorage["name"].toUpperCase());
-    
-    console.log("akarshka"+window.localStorage["another"].toUpperCase());
+  
     let paraelement;
-    const q = await query(collection(db, window.localStorage["name"].toUpperCase()),where("name","==",window.localStorage["another"].toUpperCase()),orderBy('ts', 'asc'));
+    console.log("called2");
+    const q = await query(collection(db, "Personal"),where("common","==",window.localStorage["common"]),orderBy('ts', 'asc'));
     const unsub = onSnapshot(q, (snapshot) => {
         // snapshot.doc.map((d)=>console.log(d.name))
         //   snapshot.docChanges().forEach(async change => {
@@ -81,25 +72,25 @@ window.getDocument = async function getDocument() {
         //  console.log(change.doc);
         //    }
         //   });
-        console.log(window.localStorage["name"].toUpperCase());
+        console.log("called1");
+       
         snapshot.docChanges().forEach((change) => {
+            console.log("salled");
             let element = document.createElement('div');
             element.id = new Date().getTime();
-            console.log(window.localStorage["name"].toUpperCase());
-            if (change.doc.data()['from'] == window.localStorage["name"].toUpperCase()) {
-                console.log("new");
+            console.log("called");
+            if (change.doc.data()['sender'] == window.localStorage["name"].toUpperCase()) {
+                
                 element.style = "position:relative;display: flex;justify-content: end;";
                 let image = document.createElement('img');
                 image.src = "https://media1.popsugar-assets.com/files/thumbor/hnVKqXE-xPM5bi3w8RQLqFCDw_E/475x60:1974x1559/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2019/09/09/023/n/1922398/9f849ffa5d76e13d154137.01128738_/i/Taylor-Swift.jpg"
                 image.style = "margin-top:25px;margin-left:5px;background-color:red;width:40px;height:40px;border-radius:20px;margin-right:15%"
-                let headername = document.createElement('div');
-                headername.style = "position:absolute;top:-13.75px;right:22.5%;font-size:12px;color:grey;"
-                headername.innerText = window.localStorage["name"].toUpperCase();
+                
                 paraelement = document.createElement('p');
                 paraelement.innerText = change.doc.data()['message'];
 
-                paraelement.style = "position:relative;min-width:50px;font-size: 16px;box-shadow: 10px 10px 10px rgba(0,0,0,0.20);word-wrap: break-word;line-height: 1.4;font-family:Roboto,Arial;background-color: violet;max-width: 250px;padding: 9px;margin: 0;word-wrap: break-word;margin-right: 0%;border-radius:10px 0 10px 0;margin-top:25px"
-                paraelement.appendChild(headername);
+                paraelement.style = "position:relative;min-width:50px;font-size: 16px;box-shadow: 10px 10px 10px rgba(0,0,0,0.20);word-wrap: break-word;line-height: 1.4;font-family:Roboto,Arial;background-color: rgb(139,215,189);max-width: 250px;padding: 9px;margin: 0;word-wrap: break-word;margin-right: 0%;border-radius:10px 0 10px 0;margin-top:25px"
+               
                 element.appendChild(paraelement);
                 element.appendChild(image);
             }
@@ -107,19 +98,17 @@ window.getDocument = async function getDocument() {
                 let image = document.createElement('img');
                 image.src = "https://media1.popsugar-assets.com/files/thumbor/hnVKqXE-xPM5bi3w8RQLqFCDw_E/475x60:1974x1559/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2019/09/09/023/n/1922398/9f849ffa5d76e13d154137.01128738_/i/Taylor-Swift.jpg"
                 image.style = "margin-top:25px;margin-right:5px;background-color:red;width:40px;height:40px;border-radius:20px;margin-left:15%"
-                let headername = document.createElement('div');
-                headername.style = "position:absolute;top:-13.75px;left:22.5%;font-size:12px;color:grey;"
-                headername.innerText = change.doc.data()['name'];
+                
                 element.style = "display: flex;justify-content: start;";
                 paraelement = document.createElement('p');
                 paraelement.innerText = change.doc.data()['message'];
-                paraelement.style = "position:relative;min-width:50px;font-size: 16px;box-shadow: 10px 10px 10px rgba(0,0,0,0.20);word-wrap: break-word;line-height: 1.4;font-family:Roboto,Arial;background-color: red;max-width: 250px;padding: 10px;margin: 0;word-wrap: break-word;border-radius:0px 10px 0px 10px;margin-top:25px";
-                paraelement.appendChild(headername);
+                paraelement.style = "position:relative;min-width:50px;font-size: 16px;box-shadow: 10px 10px 10px rgba(0,0,0,0.20);word-wrap: break-word;line-height: 1.4;font-family:Roboto,Arial;background-color:rgb(138, 155, 204);max-width: 250px;padding: 10px;margin: 0;word-wrap: break-word;border-radius:0px 10px 0px 10px;margin-top:25px";
+                
                 element.appendChild(image);
                 element.appendChild(paraelement);
 
             }
-
+             console.log('written');
             document.body.appendChild(element);
             window.scrollTo(0, document.body.scrollHeight);
             console.log(change.doc.data())
