@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Login karna</title></head>
+    <body>
+        <input style="display: block;" id="name" type="text" placeholder="name">
+        <input style="display: block;" id="password" type="text"
+            placeholder="another chat">
+            <input style="display: block;" id="photo1" type="text" placeholder="img">
+        <input style="display: block;" id="photu2" type="text"
+            placeholder="img1">
+        <button id="buttons" onclick="openpage()">submit</button>
+        <script>
+       function openpage() {
+        let names=[];
+       window.location.href = 'chat.html';
+       const textw=document.getElementById('name').value;
+       const another=document.getElementById('password').value;
+       const photo=document.getElementById('photo1').value;
+       const photo2=document.getElementById('photu2').value;
+       window.localStorage["name"]=textw;
+       window.localStorage["another"]=another;
+       window.localStorage["senderphoto"]=photo;
+       window.localStorage["receiverphoto"]=photo2;
+       names.push(textw);
+       names.push(another);
+       names=names.sort();
+       window.localStorage["common"]=names[0]+names[1];
+       console.log( window.localStorage["common"]);
+     
+       
+} 
+        </script>
+    </body>
+</html>

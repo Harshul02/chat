@@ -21,6 +21,10 @@ const db = getFirestore();
 window.adder = async function adder() {
     
     const messageToSend = document.getElementById('message_box').value;
+    if(messageToSend=="")
+    {
+       return;
+    }
     document.getElementById('message_box').value = "";
     console.log("poersa");
     console.log()
@@ -83,7 +87,7 @@ window.getDocument = async function getDocument() {
                 
                 element.style = "position:relative;display: flex;justify-content: end;";
                 let image = document.createElement('img');
-                image.src = "https://media1.popsugar-assets.com/files/thumbor/hnVKqXE-xPM5bi3w8RQLqFCDw_E/475x60:1974x1559/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2019/09/09/023/n/1922398/9f849ffa5d76e13d154137.01128738_/i/Taylor-Swift.jpg"
+                image.src = window.localStorage["senderphoto"].toString();
                 image.style = "margin-top:25px;margin-left:5px;background-color:red;width:40px;height:40px;border-radius:20px;margin-right:15%"
                 
                 paraelement = document.createElement('p');
@@ -96,7 +100,7 @@ window.getDocument = async function getDocument() {
             }
             else {
                 let image = document.createElement('img');
-                image.src = "https://media1.popsugar-assets.com/files/thumbor/hnVKqXE-xPM5bi3w8RQLqFCDw_E/475x60:1974x1559/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2019/09/09/023/n/1922398/9f849ffa5d76e13d154137.01128738_/i/Taylor-Swift.jpg"
+                image.src =window.localStorage["receiverphoto"].toString();
                 image.style = "margin-top:25px;margin-right:5px;background-color:red;width:40px;height:40px;border-radius:20px;margin-left:15%"
                 
                 element.style = "display: flex;justify-content: start;";
